@@ -1,0 +1,4 @@
+1) When we using x-path and classname we don't need full package's name, so we can write one line of code instead of two.
+2) If we need our program to work with real device we have to change a device name capability in driver setup file.
+3) In order to run test on real device we need to connect it to computer by Wi-Fi, but USB cable preferable. Element has no id on real device, xpath and className work properly.
+4) Name of the test should have sense and tell what feature is tested. Capabilities should be moved to property file. There is not test at all, we should add some check to make test real.

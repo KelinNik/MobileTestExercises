@@ -12,6 +12,10 @@ import java.net.URL;
 public class DriverSetupEmulator {
     AndroidDriver driver;
 
+    /**
+     * This method prepares
+     * @throws MalformedURLException
+     */
     @BeforeClass
     void prepareNative() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();

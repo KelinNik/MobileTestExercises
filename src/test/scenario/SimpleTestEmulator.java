@@ -7,18 +7,19 @@ import org.testng.annotations.Test;
 
 public class SimpleTestEmulator extends DriverSetupEmulator {
 
-    @BeforeClass
     /**
      * Prepare driver to run test(s)
      */
+    @BeforeClass
     public void setUp() throws Exception {
         prepareNative();
     }
 
-    @Test
+
     /**
      * This simple test just click on button 'Add contact'
      */
+    @Test(description = "simple test for button")
     public void SimplestTest() {
 //      String app_package_name = "com.example.android.contactmanager:id/";
 //      By add_btn = By.id(app_package_nameckage_name + "addContactButton");
@@ -31,10 +32,10 @@ public class SimpleTestEmulator extends DriverSetupEmulator {
         System.out.println("Simplest Appium test done");
     }
 
-    @AfterClass
     /**
      * Close driver on all tests completion
      */
+    @AfterClass
     public void tearDown() throws Exception {
         driver.quit();
     }

@@ -1,10 +1,8 @@
-package java.scenario;
+package scenario;
 
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 import setup.Driver;
 
 @Test(groups = {"native", "web"})
@@ -12,17 +10,20 @@ public class Hooks extends Driver {
     /**
      * Required variables will be initialized by inherited constructor
      *
-     * @throws IOException
+     * @throws Exception
      */
-    Hooks() throws IOException {
+    Hooks() throws Exception {
         super();
     }
 
-    @BeforeSuite(description = "Prepare driver to run test(s)")
-    public void setUp() throws Exception {
+    @BeforeSuite(groups = "web")
+    public void setUpWeb() throws Exception {
         prepareDriver();
-        System.out.println("Driver prepared");
+    }
 
+    @BeforeSuite(groups = "native")
+    public void setUpNative() throws Exception {
+        prepareDriver();
     }
 
     @AfterSuite(description = "Close driver on all tests completion")

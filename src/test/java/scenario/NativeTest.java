@@ -1,6 +1,7 @@
-package java.scenario;
+package scenario;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import setup.Driver;
 
@@ -8,7 +9,7 @@ import java.io.IOException;
 
 @Test(groups = "native")
 public class NativeTest extends Driver {
-    protected NativeTest() throws IOException {
+    protected NativeTest() throws Exception {
         super();
     }
 

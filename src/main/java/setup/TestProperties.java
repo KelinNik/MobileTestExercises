@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Properties;
 
 class TestProperties {
-
+    String currentPropertyFile;
     private Properties currentProps = new Properties();
 
     public TestProperties() {
@@ -14,7 +14,8 @@ class TestProperties {
     }
 
     private Properties getCurrentProps() throws IOException {
-        FileInputStream in = new FileInputStream(System.getProperty("user.dir") + "/src/main/resources/nativetest.properties");
+
+        FileInputStream in = new FileInputStream(currentPropertyFile);
         currentProps.load(in);
         in.close();
         return currentProps;

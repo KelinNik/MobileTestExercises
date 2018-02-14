@@ -1,10 +1,10 @@
 package setup;
 
 public enum PropertyFile {
-    NATIVE("webtest.properties"),
-    WEB("nativetest.properties");
+    NATIVE("nativetest.properties"),
+    WEB("webtest.properties");
 
-    private String path;
+    public String path;
 
     PropertyFile(String path) {
         this.path = path;

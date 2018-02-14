@@ -2,13 +2,13 @@ package setup;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
+
+import static setup.PropertyFile.NATIVE;
+import static setup.PropertyFile.WEB;
 
 /**
  * Initialize a driver with test properties
@@ -18,23 +18,25 @@ public class Driver extends TestProperties {
     protected DesiredCapabilities capabilities;
 
     // Properties to be read
-    private static String AUT; // (mobile) app under testing
-    protected static String SUT; // site under testing
-    private static String TEST_PLATFORM;
-    private static String DRIVER;
+    public static String AUT; // (mobile) app under testing
+    public static String SUT; // site under testing
+    public static String TEST_PLATFORM;
+    public static String DRIVER;
+    public static String DEVICE_NAME;
+
+
+
 
     // Constructor initializes properties on driver creation
     public Driver() throws Exception {
+//        currentPropertiesFile = NATIVE.path;
+    //    currentPropertiesFile = WEB.path;
         AUT = getProp("aut");
         String t_sut = getProp("sut");
         SUT = t_sut == null ? null : "http://" + t_sut;
         TEST_PLATFORM = getProp("platform");
         DRIVER = getProp("driver");
-    }
-
-    protected AppiumDriver driver() throws Exception {
-        if (singleDriver == null) prepareDriver();
-        return singleDriver;
+        DEVICE_NAME = getProp("deviceName");
     }
 
     /**
@@ -45,11 +47,19 @@ public class Driver extends TestProperties {
     protected void prepareDriver() throws Exception {
         capabilities = new DesiredCapabilities();
         String browserName;
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "emulator-5554"); // default Android emulator
-        browserName = "Chrome";
+        switch (TEST_PLATFORM) {
+            case "Android":
+                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEVICE_NAME);
+                browserName = "Chrome";
+                break;
+            case "iOS":
+                browserName = "Safari";
+                break;
+            default:
+                throw new Exception("Unknown mobile platform");
+        }
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, TEST_PLATFORM);
-
-        // Setup type of application: mobile, web (or hybrid)
+        // Setup type of application: mobile, webtest (or hybrid)
         if (AUT != null && SUT == null) {
             // Native
             File app = new File(AUT);
@@ -65,5 +75,10 @@ public class Driver extends TestProperties {
         if (singleDriver == null) {
             singleDriver = new AppiumDriver(new URL(DRIVER), capabilities);
         }
+    }
+
+    protected AppiumDriver driver() throws Exception {
+        if (singleDriver == null) prepareDriver();
+        return singleDriver;
     }
 }

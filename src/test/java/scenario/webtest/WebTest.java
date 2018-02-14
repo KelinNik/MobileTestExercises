@@ -1,12 +1,13 @@
-package scenario;
+package scenario.webtest;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import setup.Driver;
 
-import java.io.IOException;
+import static setup.PropertyFile.WEB;
 
 @Test(groups = "web")
 public class WebTest extends Driver {
@@ -18,8 +19,7 @@ public class WebTest extends Driver {
     @Test(description = "Open website")
     public void webTest() throws Exception {
         driver().get(SUT);
-//        driverWait().until(ExpectedConditions.urlToBe(SUT + "/"));
-        Assert.assertTrue(driver().findElement(By.className("homepage")).isDisplayed());
+        Assert.assertTrue(driver().getTitle().equals("Internet Assigned Numbers Authority"));
         System.out.println("Site opening done");
     }
 }

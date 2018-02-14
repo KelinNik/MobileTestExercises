@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import setup.Driver;
 
-@Test(groups = {"native", "web"})
+@Test(groups = {"web", "native"})
 public class Hooks extends Driver {
     /**
      * Required variables will be initialized by inherited constructor
@@ -16,14 +16,10 @@ public class Hooks extends Driver {
         super();
     }
 
-    @BeforeSuite(groups = "web")
-    public void setUpWeb() throws Exception {
+    @BeforeSuite(description = "Prepare driver to run test(s)", groups = {"web", "native"})
+    public void setUp() throws Exception {
         prepareDriver();
-    }
-
-    @BeforeSuite(groups = "native")
-    public void setUpNative() throws Exception {
-        prepareDriver();
+        System.out.println("Driver prepared");
     }
 
     @AfterSuite(description = "Close driver on all tests completion")

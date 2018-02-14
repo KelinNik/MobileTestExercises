@@ -29,8 +29,7 @@ public class Driver extends TestProperties {
 
     // Constructor initializes properties on driver creation
     public Driver() throws Exception {
-//        currentPropertiesFile = NATIVE.path;
-    //    currentPropertiesFile = WEB.path;
+
         AUT = getProp("aut");
         String t_sut = getProp("sut");
         SUT = t_sut == null ? null : "http://" + t_sut;

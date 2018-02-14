@@ -18,11 +18,11 @@ public class Driver extends TestProperties {
     protected DesiredCapabilities capabilities;
 
     // Properties to be read
-    public static String AUT; // (mobile) app under testing
-    public static String SUT; // site under testing
-    public static String TEST_PLATFORM;
-    public static String DRIVER;
-    public static String DEVICE_NAME;
+    private static String AUT; // (mobile) app under testing
+    protected static String SUT; // site under testing
+    private static String TEST_PLATFORM;
+    private static String DRIVER;
+    private static String DEVICE_NAME;
 
 
 

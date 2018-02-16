@@ -13,8 +13,8 @@ class TestProperties {
 
     Properties getCurrentProps() throws IOException {
 
-       // currentPropertiesFile = WEB.path; // my way to choose property file :)
-        currentPropertiesFile = NATIVE.path;
+        currentPropertiesFile = WEB.path; // my way to choose property file :)
+     //   currentPropertiesFile = NATIVE.path;
         FileInputStream in = new FileInputStream(currentPropertiesFile);
         currentProps.load(in);
         in.close();
